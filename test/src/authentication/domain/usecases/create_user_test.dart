@@ -4,8 +4,17 @@ import 'package:flutter_clean_architecture/src/authentication/domain/usecases/cr
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockAuthenticationRepository extends Mock
-    implements AuthenticationRepository {}
+import 'authentication_repository.mock.dart';
+
+// We need to ask what does our class takes
+
+// How can we create a fake version of our dependency
+
+// We need to control what the dependencies do
+
+// Mocktail helps us creating fake versions of dependencies
+
+// A class depends on a repository . We can use mocktail to create a fake version of the dependency. Our class depends on AuthenticationRepository.
 
 void main() {
   late CreateUser usecase;
