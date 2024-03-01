@@ -19,7 +19,7 @@ class CreateUserParams extends Equatable {
       {required this.createdAt, required this.name, required this.avatar});
 
   const CreateUserParams.empty()
-      : this(createdAt: " createdAt", name: "name", avatar: "avatar");
+      : this(createdAt: "createdAt", name: "name", avatar: "avatar");
 
   final String createdAt;
   final String name;

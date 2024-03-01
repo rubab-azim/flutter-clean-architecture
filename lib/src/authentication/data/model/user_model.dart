@@ -18,10 +18,11 @@ null bale and dit create new user and return that user with udated value if any
 value is null it will return the previous value of user.
 */
   const UserModel.empty()
-      : this(id: 1, createdAt: " _createdAt", name: "_name", avatar: "_avatar");
+      : this(
+            id: '1', createdAt: "_createdAt", name: "_name", avatar: "_avatar");
 
   UserModel copyWith(
-          {int? id, String? createdAt, String? name, String? avatar}) =>
+          {String? id, String? createdAt, String? name, String? avatar}) =>
       UserModel(
           id: id ?? this.id,
           createdAt: createdAt ?? this.createdAt,
@@ -33,7 +34,7 @@ value is null it will return the previous value of user.
 
   UserModel.fromMap(DataMap map)
       : this(
-            id: map['id'] as int,
+            id: map['id'] as String,
             createdAt: map['createdAt'] as String,
             name: map['name'] as String,
             avatar: map['avatar'] as String);

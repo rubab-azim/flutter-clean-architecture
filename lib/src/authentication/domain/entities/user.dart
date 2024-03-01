@@ -8,9 +8,13 @@ class User extends Equatable {
       required this.avatar});
 
   const User.empty()
-      : this(id: 1, createdAt: " _createdAt", name: "_name", avatar: "_avatar");
+      : this(
+            id: '1',
+            createdAt: " _createdAt",
+            name: "_name",
+            avatar: "_avatar");
 
-  final int id;
+  final String id;
   final String createdAt;
   final String name;
   final String avatar;
@@ -25,5 +29,5 @@ class User extends Equatable {
   // int get hashCode => id.hashCode ^ name.hashCode;
 
   @override
-  List<Object?> get props => [id];
+  List<Object?> get props => [id, name, avatar];
 }
