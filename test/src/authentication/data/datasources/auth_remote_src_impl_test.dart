@@ -23,7 +23,9 @@ void main() {
 
   group('createUser', () {
     test('should complete successfuly when staus code is 200 or 201', () async {
-      when(() => httpClient.post(any(), body: any(named: 'body'))).thenAnswer(
+      when(() => httpClient.post(any(),
+          body: any(named: 'body'),
+          headers: {'Content-Type': 'application/json'})).thenAnswer(
         (_) async => http.Response('User created successfully', 201),
       );
 
@@ -37,12 +39,15 @@ void main() {
           ),
           completes);
       verify(
-        () => httpClient.post(Uri.https(kBaseUrl, kCreateUserEndPoint),
-            body: jsonEncode({
-              'createdAt': 'createdAt',
-              'name': 'name',
-              'avatar': 'avatar',
-            })),
+        () => httpClient.post(
+          Uri.https(kBaseUrl, kCreateUserEndPoint),
+          body: jsonEncode({
+            'createdAt': 'createdAt',
+            'name': 'name',
+            'avatar': 'avatar',
+          }),
+          headers: {'Content-Type': 'application/json'},
+        ),
       ).called(1);
       verifyNoMoreInteractions(httpClient);
     });
@@ -92,7 +97,8 @@ void main() {
 
 //Assert
       expect(result, equals(tUsers));
-      verify(() => httpClient.get(Uri.https(kBaseUrl, kGetUsers))).called(1);
+      verify(() => httpClient.get(Uri.https(kBaseUrl, kGetUsersEndPoint)))
+          .called(1);
       verifyNoMoreInteractions(httpClient);
     });
     test('should return [APIEXception] when status code is not 200', () async {
@@ -121,7 +127,7 @@ void main() {
       );
 
       verify(
-        () => httpClient.get(Uri.https(kBaseUrl, kGetUsers)),
+        () => httpClient.get(Uri.https(kBaseUrl, kGetUsersEndPoint)),
       ).called(1);
       verifyNoMoreInteractions(httpClient);
     });

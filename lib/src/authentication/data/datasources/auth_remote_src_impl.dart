@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/core/error/api_exception.dart';
 import 'package:flutter_clean_architecture/core/utils/constant.dart';
 import 'package:flutter_clean_architecture/core/utils/typedef.dart';
@@ -23,8 +24,10 @@ class AuthenticationRemoteDataSrcImpl
               body: jsonEncode({
                 'createdAt': createdAt,
                 'name': name,
-                'avatar': avatar,
-              }));
+                // 'avatar': avatar,
+              }),
+              headers: {'Content-Type': 'application/json'});
+      debugPrint(Uri.https(kBaseUrl, kCreateUserEndPoint).toString());
       if (response.statusCode != 200 && response.statusCode != 201) {
         throw const APIException(
             message: 'Invalid email address', statusCode: 400);
@@ -38,7 +41,8 @@ class AuthenticationRemoteDataSrcImpl
 
   @override
   Future<List<UserModel>> getUsers() async {
-    final response = await _httpClient.get(Uri.https(kBaseUrl, kGetUsers));
+    final response =
+        await _httpClient.get(Uri.https(kBaseUrl, kGetUsersEndPoint));
     try {
       if (response.statusCode != 200) {
         throw APIException(
